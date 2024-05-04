@@ -1,8 +1,7 @@
 
 # Project Name
 
-Description: [Brief description of the project]
-
+Description: Vendor Management System using Django and Django REST Framework.This system will handle vendor profiles, track purchase orders, and calculate vendor performance metrics.
 ## Table of Contents
 
 1. [Installation](#installation)
