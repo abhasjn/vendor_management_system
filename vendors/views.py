@@ -5,6 +5,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Vendor
 from .serializers import VendorSerializer
+from django.db.models import Count, F, ExpressionWrapper, fields
+from purchase_orders.utils import calculate_on_time_delivery_rate, calculate_quality_rating_avg, calculate_average_response_time, calculate_fulfilment_rate
+
+
 
 @api_view(['GET', 'POST'])
 def vendor_list(request):
@@ -47,3 +51,38 @@ def vendor_detail(request, vendor_id):
     elif request.method == 'DELETE':
         vendor.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def vendor_performance_metrics(request, vendor_id):
+    """
+    Retrieve a vendor's performance metrics.
+    """
+    try:
+        vendor = Vendor.objects.get(pk=vendor_id)
+    except Vendor.DoesNotExist:
+        return Response({'error': 'Vendor not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Implement logic to fetch performance metrics for the vendor
+    
+    # Calculate On-Time Delivery Rate
+    on_time_delivery_rate = calculate_on_time_delivery_rate(vendor)
+    
+    # Calculate Quality Rating Average
+    quality_rating_avg = calculate_quality_rating_avg(vendor)
+    
+    # Calculate Average Response Time
+    average_response_time = calculate_average_response_time(vendor)
+    
+    # Calculate Fulfilment Rate
+    fulfilment_rate = calculate_fulfilment_rate(vendor)
+    
+    # Serialize performance metrics data
+    serializer = VendorSerializer({
+        'on_time_delivery_rate': on_time_delivery_rate,
+        'quality_rating_avg': quality_rating_avg,
+        'average_response_time': average_response_time,
+        'fulfilment_rate': fulfilment_rate
+    })
+    
+    return Response(serializer.data)

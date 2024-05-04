@@ -1,0 +1,33 @@
+Certainly! Here are the consolidated steps we followed for executing the project:
+
+**Project Setup:**
+1. Set up a Django project.
+2. Create two Django apps: `vendors` and `purchase_orders`.
+3. Define models for `Vendor` and `PurchaseOrder` in their respective apps.
+4. Run migrations to create database tables for the models.
+
+**Vendor Management:**
+5. Define serializers for `Vendor` model.
+6. Implement API views for CRUD operations on vendors.
+7. Test the vendor endpoints using Django Rest Framework's browsable API.
+
+**Purchase Order Management:**
+8. Define serializers for `PurchaseOrder` model.
+9. Implement API views for CRUD operations on purchase orders.
+10. Test the purchase order endpoints using Django Rest Framework's browsable API.
+
+**Vendor Performance Evaluation:**
+11. Define models for `HistoricalPerformance` in the `vendors` app.
+12. Implement backend logic for calculating performance metrics: On-Time Delivery Rate, Quality Rating Average, Average Response Time, and Fulfilment Rate.
+13. Create utility functions for calculating performance metrics.
+14. Add utility functions in the appropriate app (either `vendors` or `purchase_orders`).
+15. Implement API views for retrieving vendor performance metrics.
+16. Define serializers for vendor performance metrics.
+17. Test the performance metrics endpoints using Django Rest Framework's browsable API.
+
+**Additional Steps:**
+18. Ensure that serializers are properly defined for all models.
+19. Configure URLs for all API endpoints.
+20. Test the entire API to ensure proper functionality and data consistency.
+
+By following these steps, you should have a fully functional Django project with APIs for managing vendors, purchase orders, and retrieving vendor performance metrics.
